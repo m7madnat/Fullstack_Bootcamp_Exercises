@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 2.1</title>
+</head>
+
+<body>
+    <form>
+        <h1>Create an Account</h1>
+
+        <!-- Email -->
+        <label for="email">Email:</label> <br />
+        <input type="email" name="email" id="email" /> <br /><br />
+
+        <!-- Password -->
+        <label for="password">Password:</label> <br />
+        <input type="password" name="password" id="password" /> <br /><br />
+
+        <!-- Age -->
+        <label for="age">Age:</label> <br />
+        <select name="age" id="age" >
+            <option selected disabled value="0" >Select Age</option>
+            <option value="1-10">1-10</option>
+            <option value="11-20">11-20</option>
+            <option value="21-30">21-30</option>
+            <option value="31-40">31-40</option>
+            <option value="41-50">41-50</option>
+            <option value="51-60">51-60</option>
+            <option value="61-70">61-70</option>
+            <option value="71-80">71-80</option>
+            <option value="81-90">81-90</option>
+            <option value="91-100">91-100</option>
+        </select>
+        <br /><br />
+
+        <!-- About -->
+        <label for="about">Tell us a little about yourself:</label> <br />
+        <textarea name="about" id="about" cols="50" rows="5"></textarea>
+        <br /><br />
+        <!-- Terms -->
+        <input type="checkbox" name="terms" id="terms" /> I agree to the
+        <a href="#">terms of service</a>
+        <br /><br />
+        <!-- Button -->
+        <button type="submit">Sign up</button>
+    </form>
+</body>
+
+</html>
