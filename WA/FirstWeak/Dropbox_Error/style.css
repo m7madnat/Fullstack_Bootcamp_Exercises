@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+body{
+    font-family: "Open Sans", "lucida grande", "Segoe UI", arial, verdana, "lucida sans unicode", tahoma, sans-serif,"Open Sans";
+    text-align: center;
+}
+
+.image{
+    margin: 40px 0 0;
+}
+
+img{
+    width: 300px;
+}
+
+.errcard{
+    font-size: 20px;
+    line-height: 36px;
+    color: rgba(0,0,0,0.75);
+}
+
+h1{
+    color: rgba(0,0,0,0.75);
+    font-size: 38px;
+    font-weight: lighter;
+    line-height: 47px;
+    margin: 12px 0;
+}
+
+p{
+    font-weight: lighter;
+    margin-top: 2px;
+    font-size: 21px;
+}
+
+.linkshelp{
+    color: rgba(0,0,0,0.75);
+    margin: 48px 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li{
+    margin-top: 10px;
+}
+
+a{
+    color: #005ff8;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
