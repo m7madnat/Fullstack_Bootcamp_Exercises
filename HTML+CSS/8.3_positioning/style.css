@@ -1,0 +1,36 @@
+div{
+    border: 2px solid black;
+    background: white;
+    position: absolute;
+}
+.d1{      
+    height: 150px;
+    width: 200px;
+    position: absolute;
+    z-index: 1;
+}
+.d2 {
+    height: 150px;
+    width: 150px;
+    top: 70px;
+    left: 100px;
+    position: absolute;
+    z-index: 2;
+
+}
+.d3 {
+    height: 100px;
+    width: 450px;
+    top: 200px;
+    position: absolute;
+    z-index: 3;
+
+}
+.d4 {
+    height: 400px;
+    width: 100px;
+    left: 300px;
+    position: absolute; 
+    z-index: 4;
+    
+}

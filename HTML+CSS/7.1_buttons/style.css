@@ -1,0 +1,155 @@
+body{
+    text-align: center;
+    background-color: #177e89;
+    font-size: 25px;
+}
+
+
+    .fbr
+    {
+        background-color: blue;
+        color: white;
+        padding: 16px 28px;
+        border: blue;
+        font-size: 25px;
+        margin-right: 80px;
+        border-radius: 2px;
+    }
+      .fbr:hover
+       {
+        background-color: darkblue;
+        color: white;
+        }
+
+
+
+
+    .fbs
+    {
+        background-color: yellow;
+        color: white;
+        padding: 5px 10px;
+        border: yellow;
+        font-size: 25px;                
+        border-radius: 2px;
+    }   
+    .fbs:hover
+    {
+        background-color: rgb(197, 197, 27);
+        color: white;
+    }
+
+
+
+
+
+    .rbr
+    {
+        background-color: green;
+        color: white;
+        padding: 16px 28px;
+        border: green;
+        font-size: 25px;
+        margin-right: 80px;
+        border-radius: 35px;
+    }
+    .rbr:hover
+    {
+        background-color: darkgreen;
+        color: white;
+    }
+
+
+
+
+
+    .rbs
+    {
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border: red;
+        font-size: 25px;                
+        border-radius: 35px;
+    }
+    .rbs:hover
+    {
+        background-color: darkred;
+        color: white;
+    }
+
+
+
+
+
+    .fgr
+    {
+        padding: 16px 28px;
+        border: 2px solid red;
+        font-size: 25px;
+        margin-right: 80px;
+        border-radius: 2px;
+        background-color: #177e89;
+        
+    }
+    .fgr:hover
+    {
+        background-color: red;
+        color: white;
+    }
+
+
+
+
+
+    .fgs
+    {
+        padding: 5px 10px;
+        border: 2px solid #6e1789;
+        font-size: 25px;                
+        border-radius: 2px;
+        background-color: #177e89;
+    }
+    .fgs:hover
+    {
+        background-color: #6e1789;
+        color: white;
+    }
+
+
+
+
+    .rgr
+    {
+        padding: 16px 28px;
+        border: 2px solid yellow;
+        font-size: 25px;
+        margin-right: 80px;
+        border-radius: 35px;
+        background-color: #177e89;   
+        color: white;             
+    }
+    .rgr:hover
+    {
+        background-color: yellow;
+        color: white;
+    }
+
+
+
+    
+    .rgs
+    {
+        padding: 5px 10px;
+        border: 2px solid rgb(41, 210, 168);
+        font-size: 25px;                
+        border-radius: 35px;
+        background-color: #177e89;
+        color: white;
+    }
+    .rgs:hover
+    {
+        background-color:rgb(47, 255, 144);
+        color: white;
+    }
+    
