@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: antiquewhite;
+}
+.container
+{
+    display: flex;
+    justify-content: space-between;
+}
+.box {
+  width: 100px;
+  height: 100px;
+}
+
+.box1 {
+  background-color: green;
+}
+
+.box2 {
+  background-color: blue;
+}
+.box3 {
+  background-color: red;
+}

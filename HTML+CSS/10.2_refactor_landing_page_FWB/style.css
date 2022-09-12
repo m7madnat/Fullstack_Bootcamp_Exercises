@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header {
+    height: 100vh;
+    background: grey url('https://wallpaperaccess.com/full/888835.jpg')
+    no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    padding-top: 7rem;
+}
+header h1 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+header h2 {
+    display: none;
+    color: red;
+}
+.button {
+    display: inline-block;
+    text-decoration: none;
+    background: #C75EF6;
+    color: white;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+footer h2 {
+    margin: 1rem;
+    margin-left: 0;
+}
