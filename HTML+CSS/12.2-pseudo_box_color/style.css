@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.box
+{
+    width: 150px;
+    height: 150px;
+    background-color: purple;
+    position: absolute;
+}
+.box::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background-color: rgb(200, 40, 10);
+}
+
+
