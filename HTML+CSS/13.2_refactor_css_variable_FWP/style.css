@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* CSS Variables */
+    --primary :rgb(255, 255, 255);
+    --secondary :#ff0000;
+    --tertiary :#1dad1f;
+    --bgPrimary : #C75EF6;
+    --bgSecondary : #535353;
+
+    --fontrem : 3rem;
+
+}
+header {
+    height: 100vh;
+    background: var(--bgSecondary) url('https://wallpaperaccess.com/full/888835.jpg')
+    no-repeat center center/cover;
+    color: var(--primary);
+    text-align: center;
+    padding: 2rem;
+    padding-top: 7rem;
+}
+header h1 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: var(--fontrem);
+}
+header h2 {
+    display: none;
+    color: var(--secondary);
+}
+p{
+    color: var(--tertiary);
+}
+.button {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--bgPrimary);
+    color: var(--primary);
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+footer h2 {
+    margin: 1rem;
+    margin-left: 0;
+}

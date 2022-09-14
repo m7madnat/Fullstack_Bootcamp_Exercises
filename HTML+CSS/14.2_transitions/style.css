@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.box {
+    padding: 20px;
+    margin: 60px;    
+    width: 100%;
+    height: 50%;
+    border: 3px solid black;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    overflow: hidden;  
+    text-align: center;    
+}
+
+/* Translate Y */
+.translateY::before {
+    content: 'COOL!';
+    padding: 20px;
+    background: red;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: all 0.5s ease;
+    box-sizing: border-box;
+}
+.translateY:hover::before {
+    transform: translateY(100%);
+}
+
+/* TranslateX */
+.translateX {
+    color: black;
+    transition: all 0.5s ease;
+}
+.translateX::before {
+    content: '';
+    background: blue;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: all 1s ease;
+    z-index: -1;
+}
+.translateX:hover::before {
+    transform: translateX(100%);
+}
+
+/* Rotate */
+.rotate::before {
+    content: '';
+    background: yellow;
+    position: absolute;
+    top: 35%;
+    right: 90%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 1s ease;
+    transform: rotate(270deg);
+}
+.rotate:hover::before {
+    top: 0px;
+    right: 0px;
+    transform: rotate(180deg);
+}
+
+/* Scale */
+.scale{
+    width:25%;
+}
+.scale::before {
+    content: 'Scale';
+    padding: 20px;
+    box-sizing: border-box;
+    background: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+    opacity: 0;  
+    color: white;
+    text-align: center;
+    transform: scale(2);
+}
+.scale:hover::before {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Skew */
+.skew{
+    width: 25%;
+}
+.skew::before {
+    content: 'Skew';
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgb(249, 82, 255);
+    position: absolute;
+    left: 0;
+    top: 0;    
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+    opacity: 0;  
+    color: white;
+    text-align: center;
+    transform: skew(5deg);
+}
+.skew:hover::before {
+    transform: skew(0deg) rotate(360deg);    
+    opacity: 1;
+}
+.skew:hover {
+    transform: skew(10deg) rotate(-5deg);
+    opacity: 1;    
+}
