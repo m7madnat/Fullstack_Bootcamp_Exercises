@@ -1,5 +1,5 @@
-const iterArr = Array.from({length: 100}, (v, i) => i);
-console.log(iterArr);
+const iterArr = Array.from({length: 100}, (_, i) => i); // The use an ( _ ) character to denote that we don't need the first
+console.log(iterArr);                                  // parameter of the function, which is the value of the array element.  
 
 const myObj = {
     one: 1,
@@ -19,3 +19,5 @@ console.log(copyArray);
 
 const linkedArray = myArray;
 console.log(linkedArray);
+
+
