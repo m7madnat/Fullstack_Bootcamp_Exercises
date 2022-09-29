@@ -6,12 +6,12 @@ function isString(str, callback) {
   }
 }
 
-isString("Hello", function (result) {
+isString("Hello",  (result) => {
     console.log(result);
     }
 );
 
-isString(123, function (result) {
+isString(123, (result) => {
     console.log(result);
     }
 );
@@ -19,13 +19,13 @@ isString(123, function (result) {
 function firstWordUpperCase(str, callback) {
     let newStr = str.split(" ");
     console.log("haha",newStr);
-    let firstWord = newStr[0].toUpperCase();
-    let restOfWords = newStr.splice(1).join(" ");
-    let result = firstWord + " " + restOfWords;
-    callback(result);
+    newStr[0] = newStr[0].toUpperCase();
+    newStr = newStr.join(" ");
+   
+    callback(newStr);
   }
   
-  firstWordUpperCase("hello world", function (result) {
+  firstWordUpperCase("hello world", (result) => {
       console.log(result);
       }
     );
@@ -35,7 +35,7 @@ function reverseString(str, callback) {
     callback(newStr);
   }
 
-reverseString("hello world", function (result) {
+reverseString("hello world",  (result) => {
     console.log(result);
     }
     );
