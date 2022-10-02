@@ -38,7 +38,7 @@ const school = {
         },
     ],
     findPerson: function (type, id) {
-        return this[type + "s"].find((person) => person.id === id);
+        return this[type + "s"].find((person) => person.id === id); // type + "s" is a string
     },
     assignStudent: function (id, subject) {
         let availableTeacher = this.teachers.find(
@@ -46,7 +46,7 @@ const school = {
                 teacher.subjects.includes(subject) && teacher.capacityLeft
         );
         if (availableTeacher) {
-            availableTeacher.students.push(id);
+            availableTeacher.students.push(id);// add student id to teacher's students array
             availableTeacher.capacityLeft--;
         } else {
             console.log("Sorry, no available teachers left");
@@ -54,11 +54,11 @@ const school = {
     },
     assignTeachersSubject: function (teacherId, subject) {
         let teacher = this.findPerson("teacher", teacherId);
-        !teacher.subjects.includes(subject) && teacher.subjects.push(subject);
+        !teacher.subjects.includes(subject) && teacher.subjects.push(subject); // if subject is not in teacher's subjects array, add it
     },
     getStudentsTeachers: function (studentID) {
-        return this.teachers.filter((teacher) =>
-            teacher.students.includes(studentID)
+        return this.teachers.filter((teacher) => 
+            teacher.students.includes(studentID) 
         );
     },
 };
