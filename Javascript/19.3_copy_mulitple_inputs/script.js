@@ -40,7 +40,7 @@ listOfTextbox[0].addEventListener('paste',(event)=>{  // add event listener to f
     let pasteData = (event.clipboardData || window.clipboardData).getData('text'); // get pasted data
     pasteData = pasteData.split(''); // split pasted data into array 
     listOfTextbox.forEach((data,index)=>{ // loop through pasted data
-        listOfTextbox[index].value = pasteData[index] || '' // assign pasted data to each input box
+        data.value = pasteData[index] || '' // assign pasted data to each input box
     })    
     //remove blur after pasting 
     document.activeElement.blur();
