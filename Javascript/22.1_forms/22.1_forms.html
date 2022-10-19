@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10rem;
+            padding-top: 3rem;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 4rem 15rem;
+            grid-gap: 0.5rem;
+            font-size: 20px;
+        }
+        form button {
+            grid-column: span 2;
+        }
+        button {
+            padding: 0.6rem;
+            margin-top: 0.5rem;
+            background-color: beige;
+            
+        }
+        .pop-window{
+            background-color: antiquewhite;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <label for="age">Age</label>
+        <input type="text" name="age" id="age">
+        <label for="color">Email</label>
+        <input type="text" name="color" id="email">
+        <button type="button">Submit</button>
+    </form>
+    <div class="pop-window">
+        <div class="confirmation"></div>
+        <button>Confirm</button>
+        <button>Change info</button>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>
