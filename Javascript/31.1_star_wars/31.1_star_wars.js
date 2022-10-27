@@ -1,7 +1,7 @@
 const urlTemplate = 'https://swapi.dev/api/people/'
 let arrOfPeople = [];
 async function getAllPeople() {    
-    
+    try{
     for(let i=1; i<=10; i++)
     {
         const request = await(await(fetch(`${urlTemplate}${i}`))).json();
@@ -20,6 +20,10 @@ async function getAllPeople() {
         console.log(singlePerson);
     }
     return arrOfPeople;
+    }
+    catch(err){
+        console.log(err);
+    }
 }
 function createTableRowHeading(){
     let trObj = document.createElement('tr');
