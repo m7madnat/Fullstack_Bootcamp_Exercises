@@ -25,6 +25,7 @@ async function getAllPeople() {
         console.log(err);
     }
 }
+
 function createTableRowHeading(){
     let trObj = document.createElement('tr');
     trObj.style.border = '1px solid black'
@@ -99,8 +100,6 @@ function createTable(res) {
 async function createBoth() {
     let res = await getAllPeople();
     createTable(res);
-    btnObj.style.display = 'none';
 }
-let btnObj = document.querySelector('#btn');
 
-btnObj.addEventListener('click',createBoth);
+createBoth();
