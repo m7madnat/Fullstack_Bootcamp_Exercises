@@ -41,7 +41,7 @@ function createTableRowHeading(){
     temp.classList.add('td');
     temp.innerHTML='Height'
     trObj.appendChild(temp)
-    temp = document.createElement('td');
+    temp = document.createElement('td');    
     temp.classList.add('td');
     temp.innerHTML='Planet Name'
     trObj.appendChild(temp)
