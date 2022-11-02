@@ -1,3 +1,6 @@
+//* link to heroku API - https://capsules7.herokuapp.com/api/carMrket/num
+//* link to heroku API - https://capsules7.herokuapp.com/api/carMarket/img/:brand/:model
+
 //! ↓↓↓↓↓↓↓ Our car market object to start with ↓↓↓↓↓↓↓↓
 const ourCarMarket = {
   sellers: [
@@ -638,7 +641,7 @@ const getCarsToBuyByModel = (agenciesArr, model) => {
 };
 
 //* 6. getCarsToBuyByAgencyId
-//? @param {array}    - agenciesArr
+//? @param {array}     - agenciesArr
 //? @param {string}    - agencyId (optional)
 //? @return {object[]} - array of cars objects that are for sale
 //?                      at a specific agency
@@ -647,18 +650,18 @@ const getCarsToBuyByModel = (agenciesArr, model) => {
 const getCarsToBuyByAgencyId = (agenciesArr, agencyId) => {
   const res = [];
   agenciesArr.forEach((agency) => {
-    const cars = agency.cars; 
-    for (let carBrand in cars) {
-      cars[carBrand].forEach((car) => {
-        if (agency.agencyId === agencyId) {
+    if (agency.agencyId === agencyId || agencyId === undefined) {
+      const cars = agency.cars; // object
+      for (let carBrand in cars) {
+        cars[carBrand].forEach((car) => {
           res.push(car);
-        } 
-      });
+        });
+      }
     }
   });
   return res;
 };
-// console.log(getCarsToBuyByAgencyId(ourCarMarket.sellers, 'oqQmsZoUo'));
+// console.log(getCarsToBuyByAgencyId(ourCarMarket.sellers));
 
 //* 7. getAllCarsToBuyByModelAndAgencyId
 //? @param {array}     - agenciesArr
@@ -668,21 +671,10 @@ const getCarsToBuyByAgencyId = (agenciesArr, agencyId) => {
 //?                      at a specific agency and a specific model
 //?                      if agencyId didn't supplied return by all agencies
 //! do not use getCarsToBuy or getCarsToBuyByModel
-const getCarsToBuyByModelAndAgencyId = (agenciesArr, model, agencyId) => { 
-  const res = [];
-  agenciesArr.forEach((agency) => {
-    const cars = agency.cars; 
-    for (let carBrand in cars) {
-      cars[carBrand].forEach((car) => {
-        if (agency.agencyId === agencyId && car.name === model) {
-          res.push(car);
-        } 
-      });
-    }
-  });
-  return res;
+const getCarsToBuyByModelAndAgencyId = (agenciesArr, model, agencyId) => {
+  return getCarsToBuyByAgencyId(agenciesArr, agencyId).filter((car) => car.name === model);
 };
-// console.log(getCarsToBuyByModelAndAgencyId(ourCarMarket.sellers, 'X5', "26_IPfHU1"));
+// console.log(getCarsToBuyByModelAndAgencyId(ourCarMarket.sellers));
 
 //!------------- Customers Getters ----------------------
 //* 8. getCustomerByName
@@ -732,19 +724,416 @@ const getAllCustomersCars = (customersArr) => {
 //? @param {string}    - customerId (optional)
 //? @return {object[]} - customerCarsArr - Array of all customer cars object
 //?                      if customerId didn't supplied return by all customers cars
-//! do not use getAllCustomersCars
 const getAllCustomerCars = (customersArr, customerId) => {
-  const res = [];
+  let res = [];
   customersArr.forEach((customer) => {
-    if (customer.id === customerId) {
+    if (customer.id === customerId || customerId === undefined) {
       res.push(...customer.cars);
     }
   });
   return res;
 };
-// console.log(getAllCustomerCars(ourCarMarket.customers, 'BGzHhjnE8'));
+//! ---------------- Setters -----------------
 
-console.log(ourCarMarket);
+//* 13. setNewCarToAgency
+//? @param {object}  - agencyObject
+//? @param {object}  - carObject (with 'brand' key value pair)
+//? @return {object} - carObject - the car after it has been assigned
+const setNewCarToAgency = (agencyObject, carObject) => {
+  //agencyObject.cars == Object
+  // agencyObject.cars[carObject.brand] === Array of specific brand
+  agencyObject.cars[carObject.brand].push(carObject);
+  return carObject;
+};
+// const agency = ourCarMarket.sellers[0];
+// setNewCarToAgency(agency, { brand: 'Bmw', name: 'Xxxxxxx' });
+
+//* 14. deleteCarFromAgency
+//? @param {object}  - agencyObject
+//? @param {string}  - carNumber
+//? @return {object} - carObject - the car after it has been removed
+const deleteCarFromAgency = (agencyObject, carNumber) => {
+  let deletedCar;
+  for (let brand in agencyObject.cars) {
+    agencyObject.cars[brand] = agencyObject.cars[brand].filter((car) => {
+      if (car.carNumber === carNumber) {
+        deletedCar = car;
+      }
+      return car.carNumber !== carNumber;
+    });
+  }
+  return deletedCar;
+};
+// console.log(deleteCarFromAgency(ourCarMarket.sellers[3], 'KqKV_'));
+// console.log(ourCarMarket.sellers[3]);
+// console.log(ourCarMarket.sellers[3].cars);
+
+//* 15. decrementOrIncrementCashOfAgency
+//? Decrement or increment cash of an agency
+//? @param {object}   - agencyObj
+//? @param {number}   - amount - negative or positive amount
+// ? @return {number} - the new amount of agency cash
+const decOrIncCashOfAgency = (agencyObj, amount) => {
+  agencyObj.cash += amount;
+  return agencyObj.cash;
+};
+// decOrIncCashOfAgency(ourCarMarket.sellers[0], 100000000);
+
+//* 16. decOrIncCreditOfAgency
+//? @param {object}  - agencyObj
+//? @param {number}  - amount - negative or positive amount
+//? @return {number} - the new amount of agency credit
+//?                    The lowest credit is 0
+const decOrIncCreditOfAgency = (agencyObj, amount) => {
+  if (agencyObj.credit + amount >= 0) {
+    agencyObj.credit += amount;
+    return agency.credit;
+  }
+};
+
+//* 17. setCarToCustomer
+//? @param {object} - customerObj
+//? @param {object} - carObject
+//? @return {object[]} - allCarsOfCostumer
+const setCarToCustomer = (customerObj, carObject) => {
+  customerObj.cars.push(carObject);
+  return customerObj.cars;
+};
+
+//* 18. deleteCarOfCustomer
+//? @param {object} - customerObj
+//? @param {string} - carNumber
+//? @return {object[]} - allCarsOfCostumer
+const deleteCarOfCostumer = (customerObj, carNumber) => {
+  let res;
+  costumerObj.cars = costumerObj.cars.filter((car) => {
+    if (car.carNumber === carNumber) {
+      res = car;
+    }
+    return car.carNumber !== carNumber;
+  });
+  return res;
+};
+
+//* 19. decOrIncCashOfCustomer
+//? @param {object}  - customerObj
+//? @param {number}  - amount - negative or positive amount
+//? @return {number} - costumerCash
+//?                    The lowest cash amount is 0
+const decOrIncCashOfCustomer = (customerObj, amount) => {
+  if (costumerObj.cash + amount < 0) return;
+  costumerObj.cash += amount;
+  return costumerObj.cash;
+};
+
+//! ---------------- Hard ----------------------
+//* 20. setPropertyBrandToAllCars
+//? Set to all car objects the new key "model" and assign to it the correct model name
+//? @param {object} carMarket
+//? @return {boolean} in case the assignment was successful return true and false in case it was not
+//! At the end of the exercise, (theoretically)
+//! if you had the ability to change the original
+//! carMarket object to another form, what would it be?
+const setPropertyBrandToAllCars = (carMarket) => {
+  const modelsObj = {};
+  carMarket.sellers.forEach((agency) => {
+    for (let [key, value] of Object.entries(agency.cars)) {
+      value.forEach((car) => {
+        if (!modelsObj[car.name]) {
+          modelsObj[car.name] = key;
+        }
+        car.brand = key;
+      });
+    }
+  });
+  carMarket.customers.forEach((customer) => {
+    customer.cars.forEach((car) => {
+      car.brand = modelsObj[car.name];
+    });
+  });
+  return modelsObj;
+};
+
+//* 21. sortAndFilterByYearOfProduction
+//?   filter and Sort in a Ascending or Descending order all vehicles for sale by year of production.
+//?   @param {object[]} - arrOfCars - array of cars
+//?   @param {number} - fromYear - Will display vehicles starting this year
+//?   @param {number} - toYear - Will display vehicles up to this year
+//?   @param {boolean} - isAscendingOrder - true for ascending order, false for descending order (optional)
+//?   @return {object[]} - arrayOfModels - array of sorted cars
+
+//* 22. sortAndFilterByPrice
+//?   filter and Sort in a Ascending or Descending order all vehicles for sale by price of the cars.
+//?   @param {object[]} - arrOfCars - array of cars
+//?   @param {number} - fromPrice - Will display vehicles starting at this price
+//?   @param {number} - fromPrice - Will display vehicles up to this price
+//?   @param {boolean} - isAscendingOrder - true for ascending order, false for descending order
+//?   @return {object[]} - arrayOfModels - array of sorted cars
+
+//* 23. searchCar
+//?   @param {object[]} - arrOfCars - array of cars
+//?   @param {number} - fromYear - Will display vehicles starting this year (optional)
+//?   @param {number} - toYear - Will display vehicles up to this year (optional)
+//?   @param {number} - fromPrice - Will display vehicles starting at this price (optional)
+//?   @param {number} - fromPrice - Will display vehicles up to this price (optional)
+//?   @param {string} - brand - Look only for cars of this brand (optional)
+
+//! ------------------ Ninja ------------------
+
+//* 24. sellCar
+//?   Sell ​​a car to a specific customer
+//?   @param {string} - agencyId
+//?   @param {string} - customerId
+//?   @param {string} - carNumber
+//?   @return {object} - The object of the car purchased by the customer or an explanation message
+// *     - 5a. Subtract the vehicle amount + 17% (tax) from the customer's cash.
+// *     - 5b. Add the vehicle value to the car agency cash.
+// *     - 5c. Change the car owner's id to the customer's id.
+// *     - 5d. Remove the car from the array of the agency's car models.
+// *     - 5e. Add the car to the client cars array.
+// *
+// *     Taxes Authority:
+// *     - 5f. Pay 17 percent of the vehicle value to the tax authority. (add the amount to totalTaxesPaid)
+// *     - 5g. Increase the number of transactions made in one (numberOfTransactions)
+// *     - 5h. Add the vehicle amount + tax to sumOfAllTransactions
+// !     - Check that there is the requested vehicle at the agency in not return 'The vehicle does not exist at the agency'
+// !     - Check that the customer has enough money to purchase the vehicle, if not return 'The customer does not have enough money'
+
+//!      - Try to divide the tasks into several functions and try to maintain a readable language.
+
+/** 1)
+  Create an input field and a button when the button is clicked 
+  call  function that receives 'number' as a parameter (from input field) 
+  and returns a new promise after 2 sec
+  If the number is above 17 display on the screen 'You can drive' 
+  and if it’s smaller throw error and display on the screen 'You're too young to drive'
+ */
+//! Check yourself once with .then .catch and once with async await
+
+//! DRY
+//! Small functions
+
+// const button = document.querySelector('button');
+// const input = document.querySelector('input');
+// const message = document.querySelector('#message');
+
+// const getPromise = (num) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (num >= 17) resolve('You can drive');
+
+//       reject("You're too young to drive");
+//     }, 2000);
+//   });
+// };
+
+// const setMessage = (text) => (message.textContent = text);
+// // Event handlers
+// const handleButtonClick = () => {
+//   // try {
+//   // if (!input.value) throw Error('You must type your age');
+//   //   const messageToDisplay = await getPromise(input.value);
+//   //   setMessage(messageToDisplay);
+//   // } catch (e) {
+//   //   setMessage(e);
+//   // }
+//   if (!input.value) {
+//     setMessage('You must type your age');
+//     return;
+//   }
+//   getPromise(input.value)
+//     .then((res) => {
+//       setMessage(res);
+//     })
+//     .catch((e) => {
+//       setMessage(e);
+//     });
+// };
+
+// //
+// const setEvents = () => {
+//   button.addEventListener('click', handleButtonClick);
+// };
+
+// setEvents();
+
+// const func = (num) => {
+//   if (num === 0) return 1;
+//   return func(num - 1);
+// };
+// console.log(func(5));
 
 
+/** 2)
+   create a car Market Object 
+   fetch all data from the API and assign it to the carMarketObj
+   add spinner to see that everything works
+   and show message when done
+   */
+//? Do i need? https://capsules7.herokuapp.com/api/carMarket/agencies
+//? Do i need? https://capsules7.herokuapp.com/api/carMarket/agencies/:id
+//? Do i need? https://capsules7.herokuapp.com/api/carMarket/customers
+//? Do i need? https://capsules7.herokuapp.com/api/carMarket/customers/:id: 
+//? Do i need? https://capsules7.herokuapp.com/api/carMarket/tax
 
+const carMarketObj = {
+  agencies: [],
+  customers: [],
+};
+
+const setMessage = (text) => (message.textContent = text);
+
+const getAgencies = async () => {
+  const res = await fetch('https://capsules7.herokuapp.com/api/carMarket/agencies');
+  const data = await res.json();
+  return data;
+}
+
+const getCustomers = async () => {
+  const res = await fetch('https://capsules7.herokuapp.com/api/carMarket/customers');
+  const data = await res.json();
+  return data;
+}
+
+const getTax = async () => {
+  const res = await fetch('https://capsules7.herokuapp.com/api/carMarket/tax');
+  const data = await res.json();
+  return data;
+}
+
+
+const setCarMarketObj = async () => {
+  try {
+    const agencies = await getAgencies();      
+    // get agencies data using id and add it to the agencies array
+    const agenciesWithCars = await Promise.all(agencies.map(async (agency) => {
+      const res = await fetch(`https://capsules7.herokuapp.com/api/carMarket/agencies/${agency.agencyId}`);
+      const data = await res.json();
+      return data;
+    }));    
+    carMarketObj.agencies = agenciesWithCars;    
+    const customers = await getCustomers();
+    const customersWithCars = await Promise.all(customers.map(async (customer) => {
+      const res = await fetch(`https://capsules7.herokuapp.com/api/carMarket/customers/${customer.id}`);
+      const data = await res.json();
+      return data;
+    }));
+    carMarketObj.customers = customersWithCars;
+    const tax = await getTax();
+    carMarketObj.tax = tax;
+    setMessage('Done');
+    return carMarketObj;  
+  } catch (e) {
+    setMessage(e);
+  }
+}
+
+//? 3)
+//? Create two button on the screen "Customers" "Agencies"
+//? When the user clicks the button display a list of Customers / Agencies names
+//? Only one list can be presented at a time
+
+const customersButton = document.querySelector('#customers');
+const agenciesButton = document.querySelector('#agencies');
+const list = document.querySelector('#list');
+
+const handleCustomersButtonClick = () => {
+  list.innerHTML = '';
+  carMarketObj.customers.forEach((customer) => {
+    const li = document.createElement('li');
+    li.textContent = customer.name;
+    list.appendChild(li);
+  });
+}
+
+const handleAgenciesButtonClick = () => {
+  list.innerHTML = '';
+  carMarketObj.agencies.forEach((agency) => {
+    const li = document.createElement('li');
+    li.textContent = agency.agencyName;
+    list.appendChild(li);
+  });
+
+}
+
+// const setEvents = () => {
+//   customersButton.addEventListener('click', handleCustomersButtonClick);
+//   agenciesButton.addEventListener('click', handleAgenciesButtonClick);
+// }
+
+
+//? 4)
+//? When the user clicks on single name of a Customer / Agency
+//? Show over the screen a card with all the data of that particular Customer / Agency
+//! Questions we should ask ourselves:
+//! Where functions can be combined into one function?
+//! Am I holding unnecessary information in the client's browser?
+//! Why did I choose to call the API the way I did?
+//* You can divide the work inside the capsule and share the responsibility
+//* Separate the functions of logic and The functions related to HTML
+//* Don't mess with the design (CSS)
+
+const card = document.querySelector('#card');
+const cardTitle = document.querySelector('#card-title');
+const cardBody = document.querySelector('#card-body');
+
+const handleCustomerClick = (e) => {
+  const customer = carMarketObj.customers.find((customer) => customer.name === e.target.textContent);
+  cardTitle.textContent = customer.name;
+  cardBody.innerHTML = '';
+  const ul = document.createElement('ul');
+  let li = document.createElement('li');
+  li.textContent = `id: ${customer.id}`;  
+  ul.appendChild(li);
+  li = document.createElement('li');
+  for(let i = 0; i < customer.cars.length; i++) {
+    li.textContent = `name : ${customer.cars[i].name} year: ${customer.cars[i].year} price: ${customer.cars[i].price} carNumber" ${customer.cars[i].carNumber}     
+    Owner Id : ${customer.cars[i]. ownerId}`; 
+    ul.appendChild(li);
+    li = document.createElement('li');
+  }
+  
+  li.textContent = `cash: ${customer.cash}`;
+  ul.appendChild(li);
+  cardBody.appendChild(ul);
+  card.style.display = 'block';
+}
+
+const handleAgencyClick = (e) => {
+  const agency = carMarketObj.agencies.find((agency) => agency.agencyName === e.target.textContent);
+  cardTitle.textContent = agency.agencyName;
+  cardBody.innerHTML = '';
+  const ul = document.createElement('ul');
+  let li = document.createElement('li');  
+  li.textContent = `cash: ${agency.cash}`;
+  ul.appendChild(li);
+  li = document.createElement('li');
+  li.textContent = `credit: ${agency.credit}`;
+  ul.appendChild(li);
+  li = document.createElement('li');
+  li.textContent = agency.agencyId;
+  ul.appendChild(li);   
+  li = document.createElement('li');
+  li.textContent = `cars: ${agency.cars.Bmw.length}`;
+  ul.appendChild(li);
+    for(let i = 0; i < agency.cars.length; i++) {
+      li.textContent = `name : ${agency.cars[i]}`;
+      ul.appendChild(li);
+      li = document.createElement('li');
+    }
+
+  cardBody.appendChild(ul);
+  card.style.display = 'block';
+}
+
+const setEvents = () => {
+  customersButton.addEventListener('click', handleCustomersButtonClick);
+  agenciesButton.addEventListener('click', handleAgenciesButtonClick);
+  list.addEventListener('click', handleCustomerClick);
+  list.addEventListener('click', handleAgencyClick);
+}
+
+
+setEvents();
+setCarMarketObj();
+console.log(carMarketObj);
