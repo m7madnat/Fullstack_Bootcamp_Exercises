@@ -1,0 +1,8 @@
+import Box3 from "./Box3";
+const Box2 = () => {
+    return <div style={{padding: '10px', backgroundColor: 'lightblue'}}>
+        <Box3 />
+    </div>
+}
+
+export default Box2
