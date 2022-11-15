@@ -1,0 +1,60 @@
+body{
+  text-align: center;
+}
+.Header{
+  border: 2px solid black;
+  background-color: rgb(22, 163, 206);
+  height: 40px;
+  font-size: 30px;
+}
+.Header a{
+  text-decoration: none;
+  margin-left: 30px;
+  color:white;
+}
+.Header a:hover{
+  color:black;
+}
+.HomePage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 90vh;
+  font-size: 60px;
+}
+.ProductBtn,.BackBtn{
+  margin: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size:20px;
+}
+.ProductBtn:hover,.BackBtn:hover{
+  background-color: rgb(194, 231, 248);
+}
+.ProductBtn a,.BackBtn a{
+  text-decoration: none;
+  color: black;
+}
+.product-details{
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+}
+.product-name{
+  margin-bottom: 10px;
+}
+.product-img img{
+  width:200px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.product-subtitle{
+  font-size: 20px;
+  margin: 10px;
+} 
