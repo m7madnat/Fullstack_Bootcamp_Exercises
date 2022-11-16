@@ -1,0 +1,13 @@
+.App {
+  padding: 1rem;
+}
+
+.todos_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.todo {
+  margin: 1rem;
+  padding: 1rem;
+  border: solid 1px black;
+}
