@@ -1,0 +1,14 @@
+.Todo {
+  display: flex;
+  gap: 5px;
+  margin: 1rem;
+  font-size: 1.3rem;
+}
+
+.Todo > .complete {
+  text-decoration: line-through;
+}
+
+.Todo button {
+  border-radius: 5px;
+}  
