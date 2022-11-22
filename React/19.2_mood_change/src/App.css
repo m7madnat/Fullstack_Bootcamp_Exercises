@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  ul {
+    background-color: rgb(231, 231, 231);
+    justify-content: space-between;
+    list-style: none;
+  }
+  .ul-dark {
+    background-color: black;
+    color: white;
+  }
+  .home {
+    background-color: lightgray;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .about {
+    background-color: darkgray;
+    height: 100vh;
+    color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .btn-dark {
+    border: 1px orange solid;
+    background-color: rgb(75, 74, 74);
+    color: white;
+  }
