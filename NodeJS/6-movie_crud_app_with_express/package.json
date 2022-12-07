@@ -1,5 +1,5 @@
 {
-  "name": "pure",
+  "name": "6-movie_crud_app_with_express",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,5 +9,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
