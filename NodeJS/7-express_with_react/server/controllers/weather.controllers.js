@@ -7,9 +7,13 @@ const publicPath = path.join(__dirname, "..", "client", "build");
 
 export const getWeather = (req, res) => {
   const { location } = req.params;
+  
+  
+  
+  
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${req.params.location}&appid=d69ab37f921ef3e010611120b6b05e02`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${req.params.location}&appid=54188b454bc3a4b8dabc5382ba68c389`
     )
     .then(({ data }) => {
       res.json({
@@ -26,4 +30,15 @@ export const getWeather = (req, res) => {
       });
     });
 };
+
+
+
+
+
+
+
+
+
+
+
 

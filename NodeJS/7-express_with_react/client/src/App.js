@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { API } from "./api/api.js";
 
+
+
+
 function App() {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState({});
@@ -17,8 +20,22 @@ function App() {
         setNotFound(err.response.data.message);
       });
   };
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   return (
     <div>
+	
+	
+	
+	
       <form onSubmit={getWeather}>
         <input
           type="text"
@@ -39,6 +56,9 @@ function App() {
           </div>
       )}    
     </div>
+	
+	
+	
   );
 }
 
