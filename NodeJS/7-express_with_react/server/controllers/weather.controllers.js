@@ -9,7 +9,7 @@ export const getWeather = (req, res) => {
   const { location } = req.params;
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${req.params.location}&appid=c7655ed43d404d960e1709cac30f60be`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${req.params.location}&appid=d69ab37f921ef3e010611120b6b05e02`
     )
     .then(({ data }) => {
       res.json({
