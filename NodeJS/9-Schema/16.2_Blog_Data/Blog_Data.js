@@ -1,0 +1,85 @@
+const { MongoClient, ObjectID } = require("mongodb");
+
+const connectionURL = "mongodb://127.0.0.1:27017";
+const databaseName = "blog-data";
+
+MongoClient.connect(
+  connectionURL,
+  { useNewUrlParser: true },
+  async (error, client) => {
+    if (error) {
+      return console.log("Unable to connect to database!");
+    }
+
+    const db = client.db(databaseName);
+
+    db.collection("users").insertMany([
+      {
+        name: "mohamed",
+        email: "mohamed@gmail.com",
+        blogs: [],
+      },
+      {
+        name: "ahmed",
+        email: "ahmed@gmail.com",
+        blogs: [],
+      },
+    ]);
+
+    db.collection("blogPosts").insertMany([
+      {
+        title: "What We Do When",
+        author: {},
+        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        comments: [],
+      },
+      {
+        title: "Every day mission",
+        author: {},
+        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        comments: [],
+      },
+    ]);
+
+    db.collection("blogPosts").updateOne(
+      { _id: new ObjectID("6397256fa76d1bb78799fa22") },
+      { $set: { author: new ObjectID("63972426ebf86ccd48e926f8") } }
+    );
+
+    db.collection("blogPosts").updateOne(
+      { _id: new ObjectID("6397256fa76d1bb78799fa23") },
+      { $set: { author: new ObjectID("63972426ebf86ccd48e926f9") } }
+    );
+
+    db.collection("users").updateOne(
+      { _id: new ObjectID("63972426ebf86ccd48e926f8") },
+      { $set: { blogs: [new ObjectID("6397256fa76d1bb78799fa22")] } }
+    );
+
+    db.collection("users").updateOne(
+      { _id: new ObjectID("63972426ebf86ccd48e926f9") },
+      { $set: { blogs: [new ObjectID("6397256fa76d1bb78799fa23")] } }
+    );
+
+    db.collection("comments").insertMany([
+      {
+        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        blogPost: new ObjectID("6397256fa76d1bb78799fa22"),
+      },
+      {
+        text: "s been the industry's standard dummy text ever since the 1500s",
+        blogPost: new ObjectID("6397256fa76d1bb78799fa22"),
+      },
+    ]);
+
+    db.collection("blogPosts").updateOne(
+      { _id: new ObjectID("6397256fa76d1bb78799fa22") },
+      { $set: { comments: [new ObjectID("63972764170112a89c25b463")] } }
+    );
+
+    db.collection("blogPosts").updateOne(
+      { _id: new ObjectID("6397256fa76d1bb78799fa23") },
+      { $set: { comments: [new ObjectID("63972764170112a89c25b464")] } }
+    );
+  }
+);

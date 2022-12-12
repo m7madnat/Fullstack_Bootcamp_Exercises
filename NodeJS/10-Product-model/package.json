@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "mongoose": "^6.8.0",
+    "validator": "^13.7.0"
+  },
+  "name": "10-product-model",
+  "version": "1.0.0",
+  "main": "product-model.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
